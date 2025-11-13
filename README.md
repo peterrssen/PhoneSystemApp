@@ -15,4 +15,4 @@ To execute the methods locally following steps are needed:
 - 
 
 ## Usage
-Open `PhoneSystemApp.sln` in Visual Studio.
+Open `PhoneSystemApp.sln` in Visual Studio. Or download directly the executable from [/releases/tag/v1.0.0](https://github.com/peterrssen/PhoneSystemApp/releases/latest).
