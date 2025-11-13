@@ -1,0 +1,294 @@
+﻿<Window x:Class="PhoneSystemApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhoneSystemApp"
+        mc:Ignorable="d"
+        Title="PhoneSystemApp" Height="605.5" Width="700" MinWidth="700" MinHeight="550" Icon="Images\icon.ico">
+    
+    <!-- Content-->
+    <StackPanel>
+        
+        <!-- PhoneSystem Content -->
+        <Grid Margin="10 20 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- PhoneSystem A-->
+            <StackPanel Grid.Column="0" Style="{StaticResource DataStackPanel}">
+
+                <!-- Phone-System image and name-->
+                <StackPanel>
+                    <TextBlock Text="{Binding PhoneA.Name}" Style="{StaticResource PhoneSystemText}"/>
+                    <Image Source="Images\imgPhoneA.png" Width="48"/>
+                </StackPanel>
+
+                <!-- Current call -->
+                <TextBlock Text="{Binding Captions[0]}" Style="{StaticResource SeperatorTextBlock}" />
+                <Border Style="{StaticResource CurrentCallBorder}">
+                    <TextBlock Text="{Binding PhoneA.Calls[0].Description, FallbackValue='-'}" Style="{StaticResource CurrentCallText}"/>
+                </Border>
+
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[1]}" Style="{StaticResource SeperatorTextBlock}" />
+                <ListBox ItemsSource="{Binding PhoneA.Calls}" AlternationCount="2147483647" DisplayMemberPath="Description" Style="{StaticResource CallsListBox}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <!-- Call -->
+                <TextBlock Text="{Binding Captions[2]}" Style="{StaticResource SeperatorTextBlock}" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <ComboBox Name="CB1" ItemsSource="{Binding PhoneSystemsList}" DisplayMemberPath="Name" SelectedIndex="0"/>
+                    <Button Name="PhoneSystemAButton" Style="{StaticResource HoverlessButton}" Command="{Binding PSAStartCallClickCommand}" CommandParameter="{Binding ElementName=CB1, Path=SelectedItem}">
+                        <Image Source="Images\imgCall.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Status-Message -->
+                <TextBlock Text="{Binding Captions[3]}" Style="{StaticResource SeperatorTextBlock}" />
+                <TextBlock Text="{Binding PhoneA.StatusMessage}" TextWrapping="Wrap" Foreground="Red"/>
+
+            </StackPanel>
+
+            <!-- PhoneSystem B-->
+            <StackPanel Grid.Column="1" Style="{StaticResource DataStackPanel}">
+
+                <!-- Phone-System image and name-->
+                <StackPanel>
+                    <TextBlock Text="{Binding PhoneB.Name}" Style="{StaticResource PhoneSystemText}"/>
+                    <Image Source="Images\imgPhoneB.png" Height="48"/>
+                </StackPanel>
+
+                <!-- Current call -->
+                <TextBlock Text="{Binding Captions[0]}" Style="{StaticResource SeperatorTextBlock}" />
+                <Border Style="{StaticResource CurrentCallBorder}">
+                    <TextBlock Text="{Binding PhoneB.Calls[0].Description, FallbackValue='-'}" Style="{StaticResource CurrentCallText}"/>
+                </Border>
+
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[1]}" Style="{StaticResource SeperatorTextBlock}" />
+                <ListBox ItemsSource="{Binding PhoneB.Calls}" DisplayMemberPath="Description" Style="{StaticResource CallsListBox}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+         
+                 <!-- Call -->
+                <TextBlock Text="{Binding Captions[2]}" Style="{StaticResource SeperatorTextBlock}" />
+                <StackPanel Grid.Row="2"  Orientation="Horizontal">
+                    <ComboBox Name="CB2" ItemsSource="{Binding PhoneSystemsList}"  DisplayMemberPath="Name"/>
+                    <Button Name="PhoneSystemBButton" Style="{StaticResource HoverlessButton}" Command="{Binding PSBStartCallClickCommand}" CommandParameter="{Binding ElementName=CB2, Path=SelectedItem}">
+                        <Image Source="Images\imgCall.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Status-Message -->
+                <TextBlock Text="{Binding Captions[3]}" Style="{StaticResource SeperatorTextBlock}" />
+                <TextBlock Text="{Binding PhoneB.StatusMessage}" TextWrapping="Wrap" Foreground="Red"/>
+
+            </StackPanel>
+
+            <!-- PhoneSystem C-->
+            <StackPanel Grid.Column="2" Style="{StaticResource DataStackPanel}">
+
+                <!-- Phone-System image and name-->
+                <StackPanel>
+                    <TextBlock  Text="{Binding PhoneC.Name}" Style="{StaticResource PhoneSystemText}"/>
+                    <Image Source="Images\imgPhoneC.png" Height="48"/>
+                </StackPanel>
+
+                <!-- Current call -->
+                <TextBlock Text="{Binding Captions[0]}" Style="{StaticResource SeperatorTextBlock}" />
+                <Border Style="{StaticResource CurrentCallBorder}">
+                    <TextBlock Text="{Binding PhoneC.Calls[0].Description, FallbackValue='-'}" Style="{StaticResource CurrentCallText}"/>
+                </Border>
+
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[1]}" Style="{StaticResource SeperatorTextBlock}" />
+                <ListBox ItemsSource="{Binding PhoneC.Calls}" DisplayMemberPath="Description" Style="{StaticResource CallsListBox}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <!-- Call -->
+                <TextBlock Text="{Binding Captions[2]}" Style="{StaticResource SeperatorTextBlock}" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <ComboBox Name="CB3" ItemsSource="{Binding PhoneSystemsList}"  DisplayMemberPath="Name"/>
+                    <Button Name="PhoneSystemCButton" Style="{StaticResource HoverlessButton}" Command="{Binding PSCStartCallClickCommand}" CommandParameter="{Binding ElementName=CB3, Path=SelectedItem}">
+                        <Image Source="Images\imgCall.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Status-Message -->
+                <TextBlock Text="{Binding Captions[3]}" Style="{StaticResource SeperatorTextBlock}" />
+                <TextBlock Text="{Binding PhoneC.StatusMessage}" TextWrapping="Wrap" Foreground="Red"/>
+                
+            </StackPanel>
+
+            <!-- PhoneSystem D-->
+            <StackPanel Grid.Column="3" Style="{StaticResource DataStackPanel}">
+
+                <!-- Phone-System image and name-->
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="{Binding PhoneD.Name}" Style="{StaticResource PhoneSystemText}"/>
+                    <Image Source="Images\imgPhoneD.png" Height="48"/>
+                </StackPanel>
+    
+                <!-- Current call -->
+                <TextBlock Text="{Binding Captions[0]}" Style="{StaticResource SeperatorTextBlock}" />
+                <Border Style="{StaticResource CurrentCallBorder}">
+                    <TextBlock Text="{Binding PhoneD.Calls[0].Description, FallbackValue='-'}" Style="{StaticResource CurrentCallText}"/>
+                </Border>
+        
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[1]}" Style="{StaticResource SeperatorTextBlock}" />
+                <ListBox ItemsSource="{Binding PhoneD.Calls}" DisplayMemberPath="Description" Style="{StaticResource CallsListBox}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+     
+                <!-- Call -->
+                <TextBlock Text="{Binding Captions[2]}" Style="{StaticResource SeperatorTextBlock}" />
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <ComboBox Name="CB4" ItemsSource="{Binding PhoneSystemsList}"  DisplayMemberPath="Name"/>
+                    <Button Name="PhoneSystemDButton" Style="{StaticResource HoverlessButton}" Command="{Binding PSDStartCallClickCommand}" CommandParameter="{Binding ElementName=CB4, Path=SelectedItem}">
+                        <Image Source="Images\imgCall.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Status-Message -->
+                <TextBlock Text="{Binding Captions[3]}" Style="{StaticResource SeperatorTextBlock}" />
+                <TextBlock Text="{Binding PhoneD.StatusMessage}" TextWrapping="Wrap" Foreground="Red"/>
+                
+            </StackPanel>
+
+            <!-- PhoneSystem E-->
+            <StackPanel Grid.Column="4" Style="{StaticResource DataStackPanel}">
+
+                <!-- Phone-System image and name-->
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="{Binding PhoneE.Name}" Style="{StaticResource PhoneSystemText}"/>
+                    <Image Source="Images\imgPhoneF.png" Height="48"/>
+                </StackPanel>
+  
+                <!-- Current call -->
+                <TextBlock Text="{Binding Captions[0]}" Style="{StaticResource SeperatorTextBlock}" />
+                <Border Style="{StaticResource CurrentCallBorder}">
+                    <TextBlock Text="{Binding PhoneE.Calls[0].Description, FallbackValue='-'}" Style="{StaticResource CurrentCallText}"/>
+                </Border>
+        
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[1]}" Style="{StaticResource SeperatorTextBlock}" />
+                <ListBox ItemsSource="{Binding PhoneE.Calls}" DisplayMemberPath="Description" Style="{StaticResource CallsListBox}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+           
+                <!-- List of calls -->
+                <TextBlock Text="{Binding Captions[2]}" Style="{StaticResource SeperatorTextBlock}" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <ComboBox Name="CB5" ItemsSource="{Binding PhoneSystemsList}"  DisplayMemberPath="Name"/>
+                    <Button Name="PhoneSystemEButton" Style="{StaticResource HoverlessButton}" Command="{Binding PSEStartCallClickCommand}" CommandParameter="{Binding ElementName=CB5, Path=SelectedItem}">
+                        <Image Source="Images\imgCall.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </StackPanel>
+                
+                <!-- Status-Message -->
+                <TextBlock Text="{Binding Captions[3]}" Style="{StaticResource SeperatorTextBlock}" />
+                <TextBlock Text="{Binding PhoneE.StatusMessage}" TextWrapping="Wrap" Foreground="Red"/>
+                
+            </StackPanel>
+
+        </Grid>
+    
+         <!-- Our Szenario -->
+        <StackPanel Margin="0 20 0 10">
+            <TextBlock Text="Unser Szenarien" FontSize="18.667" FontWeight="Bold" FontFamily="Calibri" />
+
+
+            <!-- Szenario 1 -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Szenario 1:" Style="{StaticResource SzenarioHeadText}"/>
+                <TextBlock Text="A->B; 2s; C->B" Style="{StaticResource SzenarioHeadText}" />
+                <Button Click="Button_Click" Style="{StaticResource HoverlessButton}">
+                    <Image Source="Images\imgPlaySzenario.png" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+                <TextBlock Text="Status:" Style="{StaticResource SzenarioHeadText}" />
+                <TextBlock Name="StatusMessageTextBlock" Style="{StaticResource SzenarioHeadText}" Foreground="DarkGray" FontWeight="Normal" />
+            </StackPanel>
+
+            
+            <!-- Szenario 2 -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Szenario 2:" Style="{StaticResource SzenarioHeadText}"/>
+                <TextBlock Text="A->B; B->C; C->D" Style="{StaticResource SzenarioHeadText}" />
+                <Button Click="Button_Click_S2" Style="{StaticResource HoverlessButton}">
+                    <Image Source="Images\imgPlaySzenario.png" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+                <TextBlock Text="Status:" Style="{StaticResource SzenarioHeadText}" />
+                <TextBlock Name="StatusMessage2TextBlock" Style="{StaticResource SzenarioHeadText}" Foreground="DarkGray" FontWeight="Normal" />
+            </StackPanel>
+
+            
+            <!-- Szenario 3 -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Szenario 3:" Style="{StaticResource SzenarioHeadText}"/>
+                <TextBlock Text="A->B; B->A" Style="{StaticResource SzenarioHeadText}" />
+                <Button Click="Button_Click_S3" Style="{StaticResource HoverlessButton}">
+                    <Image Source="Images\imgPlaySzenario.png" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+                <TextBlock Text="Status:" Style="{StaticResource SzenarioHeadText}" />
+                <TextBlock Name="StatusMessage3TextBlock" Style="{StaticResource SzenarioHeadText}" Foreground="DarkGray" FontWeight="Normal" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- listbox -->
+        <ListBox Name="LB_Test" ItemsSource="{Binding Captions}" Margin="10" ></ListBox>
+
+        <TextBlock Text="{Binding ElementName=LB_Test, Path=SelectedItem}" ></TextBlock>
+
+    </StackPanel>
+
+</Window>

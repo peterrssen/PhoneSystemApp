@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PhoneSystemApp">
+
+    <Style x:Key="CallsListBox" TargetType="ListBox">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="SelectedIndex" Value="0" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="AlternationCount" Value="2147483647" />
+    </Style>
+
+</ResourceDictionary>
