@@ -1,7 +1,18 @@
-# Telefonzentrale
+# PhoneSystemApp
+Simulation of a telephone switchboard using threads and semaphores. Implemented with C#, WPF and Model View ViewModel (MVVM) as desing patern. 
 
-Die Simulation einer "Telefonzentral"; umgesetzt mit C# und WPF. 
+<p align="center">
+  <img width="500" height="500" src="./img/switchboard-in-action.gif" alt="animated" />
+</p>
 
-Ziel war das Umgehen mit Threads und Semaphoren.
+## Getting Started
+To execute the methods locally following steps are needed:
 
-![](img/image001.png)
+### Prerequisites
+* Visual Studio 14 (Other versions work probably as well but have not been tested.)
+
+### Installation
+- 
+
+## Usage
+Open `PhoneSystemApp.sln` in Visual Studio.
